@@ -73,16 +73,51 @@ export const useVmResource = () => {
     },
   ];
 
-  const localizationOptions: { value: ETaskLocation; label: string }[] = [
+  const osOptions = [
     {
-      value: ETaskLocation.usa_miami,
+      value: "ubuntu2404",
+      label: "Ubuntu 24.04 LTS",
+    },
+    {
+      value: "debian12",
+      label: "Debian 12 Bookworm",
+    },
+    {
+      value: "centos10",
+      label: "CentOS Stream 10",
+    },
+    {
+      value: "archlinux",
+      label: "Arch Linux",
+    },
+    {
+      value: "win2019std",
+      label: "Windows Server 2019",
+    },
+  ];
+
+  const localizationOptions = [
+    {
+      value: "EUA - Miami",
       label: t("createVm.usaMiami"),
     },
     {
-      value: ETaskLocation.bre_barueri,
+      value: "Brasil - São Paulo",
       label: t("createVm.brSaoPaulo"),
     },
   ];
+
+  const changeVmStatus = async (idVM: number, action: "start" | "stop") => {
+    try {
+      const response = await api.patch({
+        url: `/vm/${idVM}/${action}`,
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Erro ao dar ${action} na VM`, error);
+      throw error;
+    }
+  };
 
   const networkTypeOptions: { value: ENetworkType; label: string }[] = [
     {
@@ -252,6 +287,19 @@ export const useVmResource = () => {
     return;
   };
 
+  const updateFullVM = async (idVM: number, data: any) => {
+    try {
+      const response = await api.put({
+        url: `/vm/${idVM}`,
+        data: data,
+      });
+      return response;
+    } catch (error) {
+      console.error("Erro ao atualizar VM", error);
+      return { error: true };
+    }
+  };
+
   const deleteVM = async (idVM: number) => {
     if (role !== "admin") return toast.error(t("generic.errorOlnlyAdmin"));
     if (!idVM) return;
@@ -344,5 +392,8 @@ export const useVmResource = () => {
     getOSDeletedLabel,
     monitoringVMStatus,
     updateVMStatus,
+    changeVmStatus,
+    updateFullVM,
+    osOptions,
   };
 };

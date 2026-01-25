@@ -57,6 +57,10 @@ model vM {
   ram           Int
   disk          Int
   hasBackup     Boolean?     @default(false)
+
+  pass          String        @default("vituax@123") 
+  location      String        @default("N/A")
+
   idBrandMaster Int?
   status        EVMStatus?
   createdAt     DateTime?    @default(now()) @db.DateTime(0)
@@ -70,9 +74,11 @@ model vM {
 
 model user {
   idUser        String    @id @default(uuid())
+  fullName      String    @default("")
   username      String
   password      String
   email         String
+  phone         String    @default("")
   profileImgUrl String?
   role          ERole     @default(member)
   idBrandMaster Int?

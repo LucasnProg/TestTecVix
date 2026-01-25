@@ -90,8 +90,9 @@ Para que seu teste seja considerado, **é OBRIGATÓRIO (não opcional)** que sua
 > **📢 IMPORTANTE**: Seu repositório fork **DEVE SER PÚBLICO** para que a equipe da Vituax possa avaliar seu trabalho.
 
 Certifique-se de que:
-- [ ] Seu repositório está configurado como **público** (não privado)
-- [ ] A equipe da Vituax consegue acessar o link sem necessidade de permissões especiais
+
+- [x] Seu repositório está configurado como **público** (não privado)
+- [x] A equipe da Vituax consegue acessar o link sem necessidade de permissões especiais
 
 ### 📤 Entrega do Teste
 
@@ -108,14 +109,14 @@ Ao finalizar o teste, você deve:
 
 Antes de enviar, certifique-se de que:
 
-- [ ] O código está no **seu repositório pessoal** do GitHub
-- [ ] O repositório está configurado como **público** (não privado)
-- [ ] A branch `main` contém o projeto original
-- [ ] A branch `release` contém todas as suas modificações
-- [ ] Existe um Pull Request da `release` para a `main` **no seu repositório**
-- [ ] O README está atualizado com suas modificações
-- [ ] O projeto está funcionando corretamente
-- [ ] As credenciais de teste estão documentadas
+- [x] O código está no **seu repositório pessoal** do GitHub
+- [x] O repositório está configurado como **público** (não privado)
+- [x] A branch `main` contém o projeto original
+- [x] A branch `release` contém todas as suas modificações
+- [x] Existe um Pull Request da `release` para a `main` **no seu repositório**
+- [x] O README está atualizado com suas modificações
+- [x] O projeto está funcionando corretamente
+- [x] As credenciais de teste estão documentadas
 
 > **🎯 LEMBRE-SE**: O link que você enviará deve ser do formato:
 > `https://github.com/SEU-USUARIO/TestTecVix`
@@ -163,6 +164,7 @@ Antes de começar, certifique-se de ter instalado:
 ## 🛠️ Stack Tecnológica
 
 ### Backend
+
 - **Node.js** - Runtime JavaScript
 - **Express** - Framework web
 - **Prisma** - ORM (Object-Relational Mapping)
@@ -172,6 +174,7 @@ Antes de começar, certifique-se de ter instalado:
 - **Jest** - Framework de testes
 
 ### Frontend
+
 - **React** - Biblioteca para interfaces
 - **TypeScript** - Tipagem estática
 - **Material-UI (MUI)** - Biblioteca de componentes
@@ -241,6 +244,7 @@ npm run db:up
 ```
 
 Este comando irá:
+
 - Subir um container Docker com MySQL
 - Utilizar o arquivo `docker-compose-db.yml`
 - Expor o banco na porta **3312**
@@ -346,7 +350,7 @@ npm run dc:up
 ## 🔌 Estrutura de Portas
 
 | Serviço  | Porta |
-|----------|-------|
+| -------- | ----- |
 | Frontend | 3000  |
 | Backend  | 3001  |
 | MySQL    | 3312  |
@@ -364,10 +368,12 @@ npm run dc:up
 ### Tipos de Usuários
 
 #### Usuário Vituax
+
 - Usuário **sem** `idBrandMaster` associado
 - Considerado um usuário da própria Vituax
 
 #### Usuário com BrandMaster
+
 - Usuário **com** `idBrandMaster` associado
 - Pertence a uma empresa/MSP específica
 
@@ -378,7 +384,7 @@ npm run dc:up
 O sistema possui três níveis de permissão:
 
 | Tipo      | Leitura | Criação | Edição | Exclusão |
-|-----------|---------|---------|--------|----------|
+| --------- | ------- | ------- | ------ | -------- |
 | `member`  | ✅      | ❌      | ❌     | ❌       |
 | `manager` | ✅      | ✅      | ✅     | ❌       |
 | `admin`   | ✅      | ✅      | ✅     | ✅       |
@@ -395,21 +401,29 @@ O sistema possui três níveis de permissão:
 
 > **Importante**: Após implementar o sistema de autenticação, adicione aqui as credenciais de usuários de teste para cada tipo de permissão.
 
-Exemplo:
+### 🚀 Administrador (Vituax Global / BrandMaster 2)
 
-```
-Admin:
-  Email: admin@vituax.com
-  Senha: Admin@123
+- **E-mail:** `test.admin@vituax.com`
+- **Senha:** `Admin@123`
+- **Role:** `admin`
 
-Manager:
-  Email: manager@vituax.com
-  Senha: Manager@123
+### 💼 Gerente (BrandMaster 1 - UPIX)
 
-Member:
-  Email: member@vituax.com
-  Senha: Member@123
-```
+- **E-mail:** `manager@vituax.com`
+- **Senha:** `Manager@123`
+- **Role:** `manager`
+
+### 👤 Membro (BrandMaster 1 - UPIX)
+
+- **E-mail:** `member@vituax.com`
+- **Senha:** `Member@123`
+- **Role:** `member`
+
+### 🚫 Usuário Inativo (Teste de Bloqueio)
+
+- **E-mail:** `inactive@test.com`
+- **Senha:** `User@123`
+- **Status:** `isActive: false`
 
 ---
 
@@ -462,29 +476,29 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 ### 📋 Configuração Inicial
 
-- [ ] Criar arquivo `.env` baseado no `.env.example` (backend)
-- [ ] Criar arquivo `.env` baseado no `.env.example` (frontend)
+- [x] Criar arquivo `.env` baseado no `.env.example` (backend)
+- [x] Criar arquivo `.env` baseado no `.env.example` (frontend)
 
 ---
 
 ### 🔐 Autenticação e Autorização
 
-- [ ] Implementar as rotas de CRUD para usuários
-- [ ] Implementar rota de login do usuário
-- [ ] Implementar tela de login `/login`
-- [ ] Implementar rota de register do usuário
-- [ ] Implementar tela de register `/register`
-- [ ] Implementar autenticação com token JWT
-- [ ] Proteger as rotas da aplicação (exceto login e register) para que somente usuários logados possam acessar
-- [ ] Adicionar credenciais de usuários de teste no README e/ou `.env.example`
+- [x] Implementar as rotas de CRUD para usuários
+- [x] Implementar rota de login do usuário
+- [x] Implementar tela de login `/login`
+- [x] Implementar rota de register do usuário
+- [x] Implementar tela de register `/register`
+- [x] Implementar autenticação com token JWT
+- [x] Proteger as rotas da aplicação (exceto login e register) para que somente usuários logados possam acessar
+- [x] Adicionar credenciais de usuários de teste no README e/ou `.env.example`
 
 ---
 
 ### 🗄️ Updates no Banco de Dados
 
-- [ ] Adicionar coluna `pass` na tabela `VM` (senha da VM, respeitando regras de segurança)
-- [ ] Adicionar coluna `location` do tipo `ETaskLocation` na tabela `VM`
-- [ ] Adicionar coluna `hasBackup` na tabela `VM`
+- [x] Adicionar coluna `pass` na tabela `VM` (senha da VM, respeitando regras de segurança)
+- [x] Adicionar coluna `location` do tipo `ETaskLocation` na tabela `VM`
+- [x] Adicionar coluna `hasBackup` na tabela `VM` (Já existia a coluna no schema origina)
 
 ---
 
@@ -492,18 +506,18 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 **VM Card List:**
 
-- [ ] Implementar a função de **start** da VM
-- [ ] Implementar a função de **stop** da VM
-- [ ] Implementar os gráficos (mocados) de **Uso de CPU**
-- [ ] Implementar os gráficos (mocados) de **Uso de Memória**
+- [x] Implementar a função de **start** da VM
+- [x] Implementar a função de **stop** da VM
+- [x] Implementar os gráficos (mocados) de **Uso de CPU**
+- [x] Implementar os gráficos (mocados) de **Uso de Memória**
 
 ---
 
 ### ➕ Criação de VM
 
-- [ ] Implementar a lista dropdown dos **sistemas operacionais**
-- [ ] Implementar corretamente a **criação de uma VM**
-- [ ] Possibilitar a aceitação de **configurações dos cards de sugestão**
+- [x] Implementar a lista dropdown dos **sistemas operacionais**
+- [x] Implementar corretamente a **criação de uma VM**
+- [x] Possibilitar a aceitação de **configurações dos cards de sugestão**
 
 ---
 
@@ -511,29 +525,29 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 **Filtros:**
 
-- [ ] Implementar filtro de **pesquisa** (busca por nome)
-- [ ] Implementar filtro por **status da VM**
-- [ ] Implementar filtro por **MSP/BrandMaster**
-- [ ] Implementar filtro **"Apenas minhas VMs"** (VMs exclusivas da mesma BrandMaster do usuário logado)
+- [x] Implementar filtro de **pesquisa** (busca por nome)
+- [x] Implementar filtro por **status da VM**
+- [x] Implementar filtro por **MSP/BrandMaster**
+- [x] Implementar filtro **"Apenas minhas VMs"** (VMs exclusivas da mesma BrandMaster do usuário logado)
 
 **Ações:**
 
-- [ ] Possibilitar **stop/start** da VM pela tabela
-- [ ] Possibilitar **stop/start** da VM pelo modal de edição
+- [x] Possibilitar **stop/start** da VM pela tabela
+- [x] Possibilitar **stop/start** da VM pelo modal de edição
 
 **Modal de Edição:**
 
-- [ ] Trazer corretamente as **informações da VM** no modal
-- [ ] Possibilitar editar: **senha da VM**
-- [ ] Possibilitar editar: **nome da VM**
-- [ ] Possibilitar editar: **vCPU**
-- [ ] Possibilitar editar: **Memória**
-- [ ] Possibilitar editar: **Disco**
-- [ ] Possibilitar editar: **habilitar/desabilitar backup**
+- [x] Trazer corretamente as **informações da VM** no modal
+- [x] Possibilitar editar: **senha da VM**
+- [x] Possibilitar editar: **nome da VM**
+- [x] Possibilitar editar: **vCPU**
+- [x] Possibilitar editar: **Memória**
+- [x] Possibilitar editar: **Disco**
+- [x] Possibilitar editar: **habilitar/desabilitar backup**
 
 **Exclusão:**
 
-- [ ] Possibilitar **deletar VM** (somente usuários tipo `admin` podem deletar)
+- [x] Possibilitar **deletar VM** (somente usuários tipo `admin` podem deletar)
 
 ---
 
@@ -541,12 +555,12 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 **Referências visuais**: `screenshots/CadastroDeMSPStep01.png` e `screenshots/CadastroDeMSPStep02.png`
 
-- [ ] Implementar componente para **cadastro de MSP em 2 etapas**
-- [ ] Possibilitar **criar um novo MSP**
-- [ ] Possibilitar **editar um MSP já existente**
-- [ ] Adicionar campos de **endereço** (ou puxar pelo CEP e/ou CNPJ)
-- [ ] Implementar filtros de **search**
-- [ ] Implementar flag de **"Mostrar somente os que estão em POC"**
+- [x] Implementar componente para **cadastro de MSP em 2 etapas**
+- [x] Possibilitar **criar um novo MSP**
+- [x] Possibilitar **editar um MSP já existente**
+- [x] Adicionar campos de **endereço** (ou puxar pelo CEP e/ou CNPJ)
+- [x] Implementar filtros de **search**
+- [x] Implementar flag de **"Mostrar somente os que estão em POC"**
 
 ---
 
@@ -554,24 +568,24 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 **Referência visual**: `screenshots/CadastroDeFuncionarios.png`
 
-- [ ] Implementar a tela de **cadastro de funcionários** seguindo a imagem de referência
-- [ ] Atentar para a **responsividade**
-- [ ] Considerar as **traduções** (i18n)
+- [x] Implementar a tela de **cadastro de funcionários** seguindo a imagem de referência
+- [x] Atentar para a **responsividade**
+- [x] Considerar as **traduções** (i18n)
 
 ---
 
 ### 🎨 Configuração White Label
 
-- [ ] Permitir que a **logo da empresa** do usuário seja alterada
-- [ ] Somente usuários **admin** podem realizar essa alteração
+- [x] Permitir que a **logo da empresa** do usuário seja alterada
+- [x] Somente usuários **admin** podem realizar essa alteração
 
 ---
 
 ### 👤 Configuração de Perfil e Notificações
 
-- [ ] Permitir a edição das **informações de contato**
-- [ ] Permitir a edição da **senha**
-- [ ] Permitir a edição da **imagem de perfil** do usuário logado
+- [x] Permitir a edição das **informações de contato**
+- [x] Permitir a edição da **senha**
+- [x] Permitir a edição da **imagem de perfil** do usuário logado
 
 ---
 
@@ -586,8 +600,8 @@ git commit -m "docs: atualiza README com credenciais de teste"
 
 #### Documentação Swagger
 
-- [ ] Fazer a **documentação Swagger da API**
-- [ ] Verificar a rota `/docs` na API para visualizar a documentação
+- [x] Fazer a **documentação Swagger da API**
+- [x] Verificar a rota `/docs` na API para visualizar a documentação
 
 ---
 
@@ -699,21 +713,23 @@ Antes de enviar seu teste, **certifique-se de que**:
 
 ### 📌 Estrutura de Branches e Pull Request
 
-- [ ] **Existe a branch `main`** com o projeto original (sem modificações)
-- [ ] **Existe a branch `release`** com todas as suas alterações implementadas
-- [ ] **Existe um Pull Request aberto** da branch `release` para a branch `main`
+- [x] **Existe a branch `main`** com o projeto original (sem modificações)
+- [x] **Existe a branch `release`** com todas as suas alterações implementadas
+- [x] **Existe um Pull Request aberto** da branch `release` para a branch `main`
 
 ### 🔨 Validação de Build
 
 Execute os comandos de build para garantir que não há erros:
 
 **Backend:**
+
 ```bash
 cd backend-node-vix-test
 npm run build
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend-react-vix-test
 npm run build
@@ -726,27 +742,30 @@ npm run build
 Teste localmente com Docker:
 
 **Backend:**
+
 ```bash
 cd backend-node-vix-test
 npm run dc:up
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend-react-vix-test
 npm run dc:up
 ```
 
 Verifique se:
-- [ ] Os containers sobem sem erros
-- [ ] A aplicação está acessível e funcionando
-- [ ] Todas as funcionalidades implementadas estão operacionais
-- [ ] Não há erros no console do navegador
-- [ ] Não há erros nos logs dos containers
+
+- [x] Os containers sobem sem erros
+- [x] A aplicação está acessível e funcionando
+- [x] Todas as funcionalidades implementadas estão operacionais
+- [x] Não há erros no console do navegador
+- [x] Não há erros nos logs dos containers
 
 ### 🔐 Variáveis de Ambiente
 
-- [ ] **Caso você crie novas chaves no `.env`**, lembre-se de incluí-las também no `.env.example` (tanto do backend quanto do frontend)
+- [x] **Caso você crie novas chaves no `.env`**, lembre-se de incluí-las também no `.env.example` (tanto do backend quanto do frontend)
 
 ---
 
@@ -754,3 +773,33 @@ Verifique se:
 
 **Esperamos receber o link do seu repositório em breve!** 📬
 
+## 📝 Notas de Desenvolvimento
+
+Esta seção detalha as principais implementações, correções de bugs críticos e decisões técnicas tomadas para garantir a estabilidade e funcionalidade do projeto.
+
+### 🎨 Implementação de White Label e Identidade
+
+- **Persistência de Marca:** Implementada a funcionalidade para que Administradores realizem o upload da logo da empresa. O sistema agora processa o upload e salva a URL completa (ex: `http://localhost:3001/uploads/...`) no banco de dados, garantindo que a imagem seja renderizada corretamente em qualquer parte do sistema.
+- **Sincronização reativa:** Ajustada a store global `useZBrandInfo` para trabalhar em conjunto com o `idBrandMaster` do usuário logado. Ao carregar a página de configurações, o sistema dispara automaticamente a busca dos dados da marca atual (`getSelf`), garantindo que o usuário visualize a logo ativa antes de qualquer alteração.
+
+### 🔐 Autenticação e Estabilidade (Bug Fixes)
+
+- **Correção de Loop Infinito (Logout):** Resolvido o erro crítico _'Maximum update depth exceeded'_ no componente `PrivatePage`. A solução consistiu em adicionar uma trava de segurança no `useEffect` de proteção de rotas, garantindo que o reset das stores do Zustand só ocorra se houver dados remanescentes, interrompendo a recursão infinita.
+- **Payload JWT e Claims:** O backend foi ajustado para incluir o `idBrandMaster` dentro do payload do Token e no retorno do objeto de usuário. Isso corrigiu o problema onde as permissões.
+
+### 🚀 Infraestrutura e Isolamento de Dados
+
+- **Visibilidade de VMs:** Ajustada a lógica do `VMService` e do componente `VmList` para permitir uma visão global das máquinas por padrão. O filtro de isolamento (`onlyMyBrand`) permanece disponível via query string para funcionalidades que exigem restrição por empresa.
+- **Gestão de Roles:** Reforçada a validação de cargos (`admin`, `manager`, `member`) tanto no frontend quanto no backend, garantindo que botões de edição e exclusão (como o de White Label) sejam exibidos e processados apenas para usuários com permissão adequada.
+
+### 🐳 Docker e Fluxo de Trabalho
+
+- **Correção de Boot do Container (API):** Resolvido o erro `MODULE_NOT_FOUND` no Docker. A causa era o mapeamento de volume no `docker-compose.yml` que sobrescrevia a pasta `/app/dist` (gerada no build) pela pasta local do desenvolvedor.
+
+### 📚 Documentação Swagger
+
+- **Atualização da API:** A documentação em `http://localhost:3001/docs` foi atualizada para incluir os novos modelos de dados (`Schemas`) e os endpoints de gerenciamento de marcas e VMs, facilitando o teste de integração entre frontend e backend.
+
+## 🔑 Credenciais de Teste
+
+- **Documentação das Credenciais de testes:** A documentação das credenciais de testes foram feitas tanto na seção específica deste read-me quanto na .env.example do backend `backend-node-vix-test/.env.example`.

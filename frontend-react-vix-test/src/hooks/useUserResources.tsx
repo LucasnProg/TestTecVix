@@ -7,9 +7,11 @@ import { useTranslation } from "react-i18next";
 
 export interface IUserDB {
   idUser: string;
+  fullName: string;
   idBrandMaster: number | null;
   username: string;
   email: string;
+  phone: string;
   profileImgUrl: null | string;
   role: "admin" | "manager" | "member";
   isActive: boolean;
@@ -37,24 +39,30 @@ export const useUserResources = () => {
   const updateUser = async (data: Partial<IUserDB>) => {
     const auth = await getAuth();
     setIsLoading(true);
+
     const response = await api.put<IUserDB>({
       url: `/user/${idUser}`,
       data,
       auth,
     });
+
     setIsLoading(false);
+
     if (response.error) {
       toast.error(response.message);
       return null;
     }
 
-    setUser({
-      profileImgUrl: response.data.profileImgUrl,
-      username: response.data.username,
-      userEmail: response.data.email,
-      idBrand: response.data.idBrandMaster,
+    const updatedData = (response.data as any).data;
 
-      role: response.data.role,
+    setUser({
+      fullName: updatedData.fullName, 
+      phone: updatedData.phone,
+      profileImgUrl: updatedData.profileImgUrl,
+      username: updatedData.username,
+      userEmail: updatedData.email,
+      idBrand: updatedData.idBrandMaster,
+      role: updatedData.role,
     });
 
     return response.data;

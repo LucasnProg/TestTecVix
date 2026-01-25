@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { VMController } from "../controllers/VMController";
 import { API_VERSION, ROOT_PATH } from "../constants/basePathRoutes";
-// import { isManagerOrIsAdmin } from "../authUser/isManagerOrIsAdmin";
-// import { isAdmin } from "../authUser/isAdmin";
-// import { authUser } from "../auth/authUser";
+import { isManagerOrIsAdmin } from "../auth/isManagerOrIsAdmin";
+import { isAdmin } from "../auth/isAdmin";
+import { authUser } from "../auth/authUser";
+import { STATUS_CODE } from "../constants/statusCode";
 
 const BASE_PATH = API_VERSION.V1 + ROOT_PATH.VM; // /api/v1/vm
 
@@ -18,14 +19,15 @@ const vMController = makeVMController();
 // ========= GETs =========
 vMRoutes.get(
   BASE_PATH,
-  // authUser,
+  authUser,
   async (req, res) => {
     await vMController.listAll(req, res);
   },
 );
 
 vMRoutes.get(
-  `${BASE_PATH}/:idVM`, // authUser,
+  `${BASE_PATH}/:idVM`,
+  authUser,
   async (req, res) => {
     await vMController.getById(req, res);
   },
@@ -33,8 +35,8 @@ vMRoutes.get(
 
 // ========= POSTs =========
 vMRoutes.post(
-  BASE_PATH, // authUser,
-  // isManagerOrIsAdmin,
+  BASE_PATH, authUser,
+  isManagerOrIsAdmin,
   async (req, res) => {
     await vMController.createVM(req, res);
   },
@@ -44,9 +46,9 @@ vMRoutes.post(
 
 vMRoutes.put(
   `${BASE_PATH}/:idVM`,
-  //authUser,
+  authUser,
 
-  //isManagerOrIsAdmin,
+  isManagerOrIsAdmin,
   async (req, res) => {
     await vMController.updateVM(req, res);
   },
@@ -54,11 +56,30 @@ vMRoutes.put(
 
 // ======== DELETEs ========
 vMRoutes.delete(
-  `${BASE_PATH}/:idVM`, //authUser,
-  //isAdmin,
+  `${BASE_PATH}/:idVM`,
+  authUser,
+  isAdmin,
   async (req, res) => {
     await vMController.deleteVM(req, res);
   },
+);
+
+vMRoutes.patch(
+  `${BASE_PATH}/:idVM/start`,
+  authUser,
+  isManagerOrIsAdmin, 
+  async (req, res) => {
+    await vMController.changeStatus(req, res, "RUNNING");
+  }
+);
+
+vMRoutes.patch(
+  `${BASE_PATH}/:idVM/stop`,
+  authUser,
+  isManagerOrIsAdmin,
+  async (req, res) => {
+    await vMController.changeStatus(req, res, "STOPPED");
+  }
 );
 
 export { vMRoutes };

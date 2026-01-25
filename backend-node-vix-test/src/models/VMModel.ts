@@ -28,22 +28,22 @@ export class VMModel {
     });
   }
 
-  async listAll({ query, idBrandMaster }: IListAllVM) {
-    const limit = query.limit || 0;
-    const skip = query.page ? query.page * limit : query.offset || 0;
-    const { status, idBrandMaster: idBrandMasterParams } = query;
+  async listAll({ query }: IListAllVM) {
+    const limit = Number(query.limit) || 0;
+    const skip = query.page ? Number(query.page) * limit : Number(query.offset) || 0;
+
+    const idBrandMaster = query.idBrandMaster ? Number(query.idBrandMaster) : undefined;
+    const status = query.status;
+
     const orderBy =
       query.orderBy?.map(({ field, direction }) => ({
         [field]: direction,
       })) || [];
 
-    const isRetriveAllCompanies = idBrandMaster === idBrandMasterParams;
-
     const vms = await prisma.vM.findMany({
       where: {
         deletedAt: null,
-        idBrandMaster:
-          !idBrandMaster && isRetriveAllCompanies ? undefined : idBrandMaster,
+        idBrandMaster: idBrandMaster,
         status,
         vmName: {
           contains: query.search,
@@ -54,8 +54,8 @@ export class VMModel {
       orderBy: orderBy.length
         ? orderBy
         : {
-            updatedAt: "desc",
-          },
+          updatedAt: "desc",
+        },
       include: {
         brandMaster: {
           select: {
@@ -73,10 +73,21 @@ export class VMModel {
     return { totalCount, result: vms };
   }
 
-  async createNewVM(data: TVMCreate) {
+  async createNewVM(data: any) {
     return await prisma.vM.create({
-      data: { ...data },
-    });
+    data: {
+      vmName: data.vmName,
+      vCPU: data.vCPU,
+      ram: data.ram,
+      disk: data.disk,
+      hasBackup: data.hasBackup,
+      pass: data.pass,
+      location: data.location, 
+      os: data.os,
+      idBrandMaster: data.idBrandMaster,
+      status: "RUNNING",
+    },
+  });
   }
 
   async updateVM(idVM: number, data: TVMUpdate) {
@@ -90,6 +101,16 @@ export class VMModel {
     return await prisma.vM.update({
       where: { idVM },
       data: { updatedAt: new Date(), deletedAt: new Date() },
+    });
+  }
+
+  async updateStatus(idVM: number, status: "RUNNING" | "STOPPED" | "PAUSED") {
+    return await prisma.vM.update({
+      where: { idVM },
+      data: {
+        status: status, 
+        updatedAt: new Date()
+      },
     });
   }
 }

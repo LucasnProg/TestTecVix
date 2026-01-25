@@ -224,6 +224,14 @@
           ],
           "default": false
         },
+        "pass": {
+          "type": "string",
+          "default": "vituax@123"
+        },
+        "location": {
+          "type": "string",
+          "default": "N/A"
+        },
         "status": {
           "type": [
             "string",
@@ -280,6 +288,10 @@
         "idUser": {
           "type": "string"
         },
+        "fullName": {
+          "type": "string",
+          "default": ""
+        },
         "username": {
           "type": "string"
         },
@@ -288,6 +300,10 @@
         },
         "email": {
           "type": "string"
+        },
+        "phone": {
+          "type": "string",
+          "default": ""
         },
         "profileImgUrl": {
           "type": [
